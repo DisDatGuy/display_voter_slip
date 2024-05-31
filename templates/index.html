@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Data from Excel</title>
+    <style>
+        .form-row {
+            display: flex;
+            /* justify-content: space-between; */
+        }
+
+        .form-labels{
+            width: 40%;
+        }
+        .form-input{
+            width: 300px;
+            margin-left: 40px;
+        }
+        .form-group {
+            display: flex;
+            width: 100%;
+            /* Adjust width as needed */
+            margin-bottom: 20px;
+            /* Adjust spacing as needed */
+        }
+
+
+        .container {
+            background: url("./static/background.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            
+            width: 100%;
+            margin: 0 0;
+            padding: 20px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #666;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="tel"],
+        select {
+            width: 75%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 20px;
+            color: #000000;
+            margin: 0;
+        }
+        .p1 {
+            font-size: 28px;
+            color: red;
+            align-self: center;
+            margin-top: 80px;
+            justify-content: center;
+        }
+        .p2 {
+            font-size: 20px;
+            color: #000000;
+            align-self: center;
+            margin-top: 100px;
+        }
+
+        /* Style the header */
+        .header {
+            padding: 0px 0px;
+            color: #f1f1f1;
+            /* margin-bottom: 50px; */
+        }
+        img{
+            width: 100%;
+            height: 150px;
+        }
+        .card{
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            width: 500px;
+            height: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+            border-radius: 5%;
+            border: 1px solid black;
+        }
+        .card1{
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            height: 300px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+            border-radius: 5%;
+            border: 1px solid black;
+        }
+        #middlebox {
+            float: left;
+        }
+        #leftbox {
+            float: left;
+            width: 25%;
+            margin-right: 20px;
+        }
+        #rightbox {
+            float: right;
+            width: 25%;
+            margin-left: 20px;
+        }
+        .btn{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+       
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./static/header.jpg" alt="header-img" srcset="">
+    </div>
+    <div class="container">
+        <div class="form-header">
+            <h2></h2>
+        </div>
+        <div class="card1" id="leftbox"> <p>तुमचे तपशील शोधण्यासाठी पायऱ्या<br>
+            1: तुमचे पूर्ण नाव आणि तुमचा फोन नंबर भरा <br>
+            2: "शोध" बटणावर क्लिक करा<br>
+            3: एक नवीन पृष्ठ उघडेल <br>
+            !! आपण "सेव्ह" बटण वापरून आपले तपशील डाउनलोड करू शकता</p> </div>
+        <div class="card" id="middlebox">
+            <p style="margin-bottom: 10px;">please fill in the details for your voting slip</p>
+            <form action="/" method="post">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-labels">
+                            <label for="first_name">Enter first name:</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" id="first_name" name="first_name" placeholder="Enter First Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-labels">
+                            <label for="middle_name">Enter middle name:</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" id="middle_name" name="middle_name" placeholder="Enter Middle Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-labels">
+                            <label for="last_name">Enter last name:</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-labels">
+                            <label for="phone_number">Enter Phone Number:</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="tel" id="phone_number" name="phone_number" placeholder="Enter Phone Number" pattern="[0-9]{10}"
+                            required>
+                        </div>
+                        </div>
+                    </div>
+                    <div class = "btn">
+                        <input type="submit" value="Search">
+                        </div>
+            </form>
+
+            {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+        </div>
+        <div class="card1" id="rightbox">
+            <p class="p1">!!!!!कृपया 26 जून रोजी मतदान करा!!!!!</p>
+        </div>
+    </div>
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data from Excel</title>
+    <style>
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            width: 48%;
+            /* Adjust width as needed */
+            margin-bottom: 20px;
+            /* Adjust spacing as needed */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #666;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 20px;
+            color: #000000;
+            margin: 0;
+        }
+        .p1 {
+            font-size: 20px;
+            color: #000000;
+            margin: 0;
+        }
+
+        /* Style the header */
+        .header {
+            padding: 10px 16px;
+            color: #f1f1f1;
+        }
+
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+       
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="./static/header.jpg" alt="header-img" srcset="">
+    </div>
+    <div class="container">
+        <div class="form-header">
+            <h2></h2>
+        </div>
+        <form action="/" method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">Enter first name:</label>
+                    <input type="text" id="first_name" name="first_name">
+                </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group">
+                    <label for="middle_name">Enter middle name:</label>
+                    <input type="text" id="middle_name" name="middle_name">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="last_name">Enter last name:</label>
+                    <input type="text" id="last_name" name="last_name">
+                </div>
+                <div class="form-group">
+                    <label for="epic_no">Enter Epic No:</label>
+                    <input type="text" id="epic_no" name="epic_no">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone_number">Enter Phone Number:</label>
+                    <input type="text" id="phone_number" name="phone_number" required>
+                </div>
+            </div>
+            
+            <input type="submit" value="Search">
+        </form>
+        {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+    <div style="color:white ;">
+       {{cell1_value}} <br>
+       {{cell2_value}} <br>
+       {{cell3_value}} <br>
+       {{cell4_value}} <br>
+       {{cell5_value}} <br>
+       {{cell6_value}} <br>
+       {{cell7_value}} <br>
+       {{cell8_value}} <br>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+        
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>  Name  {{cell1_value}} {{cell2_value}} {{cell3_value}}<br></p>
+                <p>  School  {{cell4_value}} <br> </p>
+                <p>  Age  {{cell5_value}} <br> </p>
+                <p>  Epic No  {{cell6_value}} <br> </p>
+                <p>  Booth Number  {{cell7_value}} <br> </p>
+                <p>  Booth Address  {{cell8_value}} <br> </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data from Excel</title>
+    <style>
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            width: 48%; /* Adjust width as needed */
+            margin-bottom: 20px; /* Adjust spacing as needed */
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            color: #666;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        p {
+            font-size: 20px;
+            color: #030303;
+            margin: 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data from Excel</h1>
+        <form action="/" method="post">
+            
+            <label for="first_name">Enter first name:</label>
+            <input type="text" id="first_name" name="first_name">
+  
+            <label for="middle_name">Enter middle name:</label>
+            <input type="text" id="middle_name" name="middle_name">
+            
+            <label for="last_name">Enter last name:</label>
+            <input type="text" id="last_name" name="last_name">
+
+            <label for="epic_no">Enter Epic No:</label>
+            <input type="text" id="epic_no" name="epic_no">
+          
+            <input type="submit" value="Search">
+        </form>
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+    
+    <div class="container">
+        {{cell1_value}}  <br> 
+        {{cell2_value}}  <br>
+        {{cell3_value}}  <br>
+        {{cell4_value}}  <br>
+        {{cell5_value}}  <br>
+        {{cell6_value}}  <br>
+        {{cell7_value}}  <br>
+        {{cell8_value}}  <br>
+
+    </div>
+    
+</body>
+</html> --> -->
